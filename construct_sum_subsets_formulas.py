@@ -1,4 +1,4 @@
-# Construct formulars for counting sum of subsets modulo div
+# Construct formulas for counting sum of subsets modulo div
 # Problem related to youtube video "Olympiad level counting - How many subsets of {1,…,2000} have a sum divisible by 5"
 #  by 3Blue1Brown (url: https://www.youtube.com/watch?v=bOXCLR3Wric)
 
@@ -62,7 +62,7 @@ class SymbolTable:
         if len(self.key_symbols) == 1:
             symbol0 = list(self.key_symbols.keys())[0]
             n = self.div
-            print(f"# Apply rule of \"power of two\" (#1). Formular: {symbol0} = 2**n // d")
+            print(f"# Apply rule of \"power of two\" (#1). Formula: {symbol0} = 2**n // d")
             print(f"n = {n} => {symbol0} = {2**n // self.div}")
         elif len(self.key_symbols) == 2 or len(self.key_symbols) == 3:
             key_symbols_keys = list(self.key_symbols)
@@ -166,7 +166,7 @@ class SymbolTable:
                 print("# f3_2(n, d): m >= 1: j * (-q)**((n//d)-1) - p * j * (k**((n//self.div)-2)) * (s from 0 to (m-2) Sum of ((2**(log_2(p) - log_2(k))**s)")
                 print("  => diff_0 * (-q)**((n//d)-1) - p * j * (k**((n//self.div)-2)) * ((2**(log_2(-q) - log_2(k))**s) - 1) // (2**(log_2(-q) - log_2(k)) - 1)")                
                 d = self.div
-                # Formulars for coefficients
+                # Formulas for coefficients
                 print(f"# Formula for {key_symbols_keys[0]}: (2**n + mu_1 *  f3_1(n, d) + mu_2 * f3_2(n, d))// d")
                 print(f"# Formula for {self.sym_c[index_of_second_symbol_in_diff]}: (2**n + (mu_1 - d) *  f3_1(n, d) + mu_2 * f3_2(n, d))// d")
                 print(f"# Formula for {self.sym_c[row_index_with_3_symbols]}: (2**n + mu_1 * f3_1(n, d) + (mu_2 - d) * f3_2(n, d))// d")
