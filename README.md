@@ -13,6 +13,7 @@ File list
 ------------
 - **calculate_sum_subsets.py**: Calculate number of sums of subsets of n numbers modulo d.
 - **construct_sum_subsets_formulas.py**: Construct formulas for different divisors.
+- **calculate_sum_subsets_cs.py**: Calculate number of sums of subsets of n numbers modulo d via cyclic sieving.
 - **construct.txt**: Output of script construct_sum_subsets_formulas.py.
 
 Usage
@@ -21,6 +22,8 @@ Usage
     * **calcluate_sum_subsets_linear(n, div)**: Use matrix multiplications to calculate number of sums of subsets of n numbers modulo div. Return a (d, 1) matrix with count of sums congruent to (0, 1, ...) modulo d.
     * **calcluate_sum_subsets_logarithmic(n, div)**: Like calcluate_sum_subsets_linear, but only has logarithmic complexity instead of linear. Return a (d, 1) matrix with count of sums congruent to (0, 1, ...) modulo d.
     * **calcluate_sum_subsets_constant(n, div)**: Use formulas to calculate number of sums of subsets of n numbers modulo div. Return a (d, 1) matrix with count of sums congruent to (0, 1, ...) modulo d. Throws ValueError if d is not supported.
+- calcluate_sum_subsets_cs.py
+    * **calcluate_sum_subsets_cs(n, div)**: Use cyclic sieving to calculate number of sums of subsets of n numbers modulo div. Return a (d, 1) matrix with count of sums congruent to (0, 1, ...) modulo d. *It's not fully functional since floating point values are returned.*
 
 
 License & Copyright
