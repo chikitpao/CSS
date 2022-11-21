@@ -29,10 +29,11 @@ Usage
 
 **CAUTION** calculation will take longer with larger d. It might caused by calculation with large matrices. For function **calcluate_sum_subsets_cs**, I have to elminiate roots in polynoimal myself since SymPy seems to be unable to eliminate roots in sum. These are calculation times of function **calcluate_sum_subsets_cs** with n = 2000:
 * d = 5: time = 0.063 s
-* d = 10: time = 0.42 s
-* d = 15: time = 2.4 s
-* d = 20: time = 7.5 s
-* d = 25: time = 30 s
+* d = 10: time = 0.12 s
+* d = 15: time = 0.4 s
+* d = 20: time = 1.0 s
+* d = 25: time = 2.1 s
+* d = 50: time = 64 s
 
 License & Copyright
 -------------------

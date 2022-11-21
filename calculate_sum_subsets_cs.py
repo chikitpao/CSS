@@ -83,7 +83,8 @@ class CyclicSievingMatrix:
         for i in range(0, self.d):
             product = 1
             for j in range(0, self.d):
-                product = sp.expand(product * (self.M[i, j] + 1))
+                product = product * (self.M[i, j] + 1)
+            sp.expand(product)
             #print(f"i={i}: product={product}, free_symbols: {product.free_symbols}")
             # Eliminate roots in polynomial myself since Sympy seems to be unable to eliminate roots in sum.
             new_poly = shrink_poly(product, self.zeta, self.d, self.divisors)
