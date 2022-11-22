@@ -80,8 +80,12 @@ def create_matrix_from_solution_vector_sp(v):
     return M
 
             
-def generate_solution_vectors_sp(div):
+def generate_solution_vectors_sp(div, maxVector=None):
     result = []
+    
+    vectorCount = div
+    if(maxVector is not None and maxVector >= 1 and maxVector <= div):
+        vectorCount = maxVector
     
     # Step 1: Create matrix for 0 elements (= Identity matrix)
     M = sp.eye(div)
@@ -89,7 +93,7 @@ def generate_solution_vectors_sp(div):
     # Step 2: Create vector for different values (needs new matrix from last value)
     element_vector = sp.zeros(div, 1)
     element_vector[0, 0] = 1
-    for i in range(1, div + 1):
+    for i in range(1, vectorCount + 1):
         r = i % div
         element_vector[r, 0] += 1
         v2 = M * element_vector
@@ -245,7 +249,7 @@ def calcluate_sum_subsets_constant(n, div): # Use formulas
         return v
 
     M = create_matrix_from_solution_vector_sp(v)
-    r = generate_solution_vectors_sp(div)
+    r = generate_solution_vectors_sp(div, remainder)
     v = M * r[remainder-1]
     return v
 

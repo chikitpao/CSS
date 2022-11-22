@@ -135,19 +135,99 @@ def calcluate_sum_subsets_cs(n, div, debug=False):
         return v
 
     M = create_matrix_from_solution_vector_sp(v)
-    r = generate_solution_vectors_sp(d)
+    r = generate_solution_vectors_sp(d, remainder)
     v = M * r[remainder-1]
     return v
 
+
+def calculate_product_matrix(d):
+    v = sp.zeros(d, 1)
+    
+    # First number is always 2**d
+    v[0,0] = 2**d
+
+    # If d is power of two, all other numbers are 0
+    if(power_of_two(d)):
+        return v
+
+    # If p is prime, all other numbers are 2
+    divisors = sp.divisors(d)
+    if len(divisors) == 2:
+        for i in range(1, d):
+            v[i,0] = 2
+        return v
+
+    trailing = sp.trailing(d)
+    pow_of_2 = 2**trailing
+    for i in range(1, d):
+        # if d has 2 as factor more often than i, then this number is 0
+        if trailing >= 1 and i % pow_of_2 != 0:
+                v[i,0] = 0
+                continue
+        
+        # All other cases
+        v[i,0] = 2**sp.gcd(i, d)
+    return v
+
+
+def calcluate_sum_subsets_gcd(n, div):
+    if n < 0 or div < 2:
+        raise ValueError("n must be >= 0 and div must be >=2!")
+    
+    d = div
+    v = sp.Matrix(div, 1, lambda row, col: 1 if row == 0 else 0)
+    if n <= 0:
+        return v
+
+    remainder = n % d
+    temp_n = n - remainder
+    quotient = temp_n // d
+    divisors = sp.divisors(d)
+
+    v = calculate_product_matrix(d)
+    for i in range(div):
+        v[i,0] = v[i,0]**quotient
+     
+    # factors to generating functions
+    # row: index for functions, col: index of coefficient
+    zeta = sp.symbols("zeta")
+    gf_factors = sp.Matrix(d, d, lambda row, col: zeta ** (((d-row)*col) % d))
+
+    # Eliminate roots in polynomial myself since Sympy seems to be unable to eliminate roots in sum.
+    v2 = v.T * gf_factors
+    root = sp.root(1, d, 1)
+    for i in range(div):
+        v2[0,i] = shrink_poly(v2[0,i], zeta, d, divisors)
+        # shrink_poly shall have already eliminated all roots.
+        assert(len(v2[0,i].free_symbols)==0)
+        v2[0,i] = v2[0,i].subs(zeta, root)
+        assert(v2[0,i] % d == 0)
+        v2[0,i] = v2[0,i] // d
+    v = v2.T
+
+    if remainder == 0:
+        return v
+
+    M = create_matrix_from_solution_vector_sp(v)
+    r = generate_solution_vectors_sp(d, remainder)
+    v = M * r[remainder-1]
+    return v
+
+
 def test_calculation(n, div):
     print(f"##### div: {div}, n: {n}")
-    t = time.process_time()
-    r1 = calcluate_sum_subsets_cs(n, div, debug=True)
-    time_log = time.process_time() - t
-    print(f"# calcluate_sum_subsets_cs: {r1}")
-    print(f"# time elapsed={time_log}")
+    t_gcd = time.process_time()
+    r1 = calcluate_sum_subsets_gcd(n, div)
+    t_gcd = time.process_time() - t_gcd
+    print(f"# calcluate_sum_subsets_gcd: {r1}")
+    print(f"# time elapsed={t_gcd}")
+    
+    t_log = time.process_time()
     r2 = calcluate_sum_subsets_logarithmic(n, div)
-    print(f"# Difference to result from calcluate_sum_subsets_logarithmic: {(r1-r2).evalf()}")
+    t_log = time.process_time() - t_log
+    is_equal = r2.equals(r1)
+    print(f"# Same to result from calcluate_sum_subsets_logarithmic? {is_equal}, time elapsed={t_log}")
+    return is_equal
 
 
 def test_roots_of_unity():
@@ -161,18 +241,35 @@ def test_roots_of_unity():
         # "(-1)**(1/3), arg: pi/3, 1.04719755119660"
         print(f"{e}, arg: {sp.arg(sympy_expr)}, {sp.arg(sympy_expr).evalf()}" )
 
-    root = sp.root(1, 5, 1)
-    sum = 0
-    for i in range(1, 11):
-        t = root**i
-        sum += t
-        print(f"i: {i}, root**i: {t}, sum: {sum}")
+    root = sp.root(1, 6, 1)
+    product = 1
+    for i in range(1, 7):
+        t = root**(i * 2)
+        product *= (t + 1)
+        print(f"i: {i}, root**i: {t + 1}")
+    print(product.evalf())
+
+
+def test_calculate_product_matrix(start, end_exclusive):
+    for i in range(start, end_exclusive):
+        M = CyclicSievingMatrix(i)
+        t_PM = time.process_time()
+        PM = M.return_product_matrix()
+        t_PM = time.process_time() - t_PM
+        t_CPM =  time.process_time()
+        CPM = calculate_product_matrix(i)
+        t_CPM =  time.process_time() - t_CPM
+        is_equal = PM.equals(CPM)
+        print(f"i: {i}, calculate_product_matrix: {CPM}, equals: {is_equal}, t_CPM: {t_CPM}, t_PM {t_PM}")
+        assert(is_equal)
 
    
 def main():
     init_printing(use_unicode=True)
-    # test_roots_of_unity()
-    test_calculation(2000, 5)
+    #test_roots_of_unity()
+    #test_calculate_product_matrix(2, 66)
+    for i in range(2, 50):
+        assert(test_calculation(2000, i))
 
 
 if __name__ == '__main__':

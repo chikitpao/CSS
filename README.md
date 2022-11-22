@@ -26,8 +26,9 @@ Usage
     * **calcluate_sum_subsets_constant(n, div)**: Use formulas to calculate number of sums of subsets of n numbers modulo div. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d. Throws ValueError if d is not supported.
 - calcluate_sum_subsets_cs.py
     * **calcluate_sum_subsets_cs(n, div, debug=False)**: Use cyclic sieving on a generating function to calculate number of sums of subsets of n numbers modulo div. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d. With parameter **debug** is set to True, additional information is shown to the output which is helpful if you want to create formulas for calculation :-).
+    * **calcluate_sum_subsets_gcd(n, div)**: Like calcluate_sum_subsets_cs, but is much faster by replacing the most polynomial multiplications with evaluation of behavior regarding roots of unity.
 
-**CAUTION** calculation will take longer with larger d. It might caused by calculation with large matrices. For function **calcluate_sum_subsets_cs**, I have to elminiate roots in polynoimal myself since SymPy seems to be unable to eliminate roots in sum. These are calculation times of function **calcluate_sum_subsets_cs** with n = 2000:
+**CAUTION:** calculation will take longer with larger d. It might be caused by calculation with large matrices. For function **calcluate_sum_subsets_cs**, I have to elminiate roots in polynoimal myself since SymPy seems to be unable to eliminate roots in sum. These are calculation times of function **calcluate_sum_subsets_cs** with n = 2000:
 * d = 5: time = 0.063 s
 * d = 10: time = 0.12 s
 * d = 15: time = 0.4 s
