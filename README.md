@@ -16,7 +16,9 @@ File list
 - **calculate_sum_subsets.py**: Calculate number of sums of subsets of n numbers modulo d.
 - **calculate_sum_subsets_cs.py**: Calculate number of sums of subsets of n numbers modulo d via cyclic sieving on a generating function.
 - **construct.txt**: Output of script construct_sum_subsets_formulas.py.
-- **construct_sum_subsets_formulas.py**: Construct formulas for different divisors.
+- **construct_sum_subsets_formulas.py**: Construct formulas for different divisors (not working for several values of d).
+- **construct_sum_subsets_formulas2.py**: Construct formulas for different divisors (for d from 2 to 50).
+- **construct2.txt**: Output of script construct_sum_subsets_formulas2.py.
 
 Usage
 ------------

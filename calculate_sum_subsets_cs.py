@@ -11,7 +11,9 @@ import time
 from calculate_sum_subsets import *
 
 
-def shrink_poly(expr, sym, div, divisors):
+def shrink_poly(expr, sym, div, divisors, frantic=False):
+    # frantic = True: Test aggressively by testing cycle for factors p of d also 
+    # with offsets from 1 to p-1.
     new_expr = sp.poly(expr, sym)
     
     # Replace power with (power % div)
@@ -25,18 +27,26 @@ def shrink_poly(expr, sym, div, divisors):
     for p in divisors:
         if p == div:
             continue
-        common_coefficient = None
-        for i in range(0, div, p):
-            index = div - i - 1
-            if common_coefficient is None:
-                common_coefficient = new_coeffs[index]
-            elif common_coefficient > new_coeffs[index]:
-                common_coefficient = new_coeffs[index]
-        #print(p, common_coefficient)
-        if common_coefficient is not None and common_coefficient > 0:
-                for i in range(0, div, p):
-                    index = div - i - 1
-                    new_coeffs[index] -= common_coefficient
+        offsets = [0]
+        if frantic:
+            offsets = [x for x in range(p)]
+        for offset in offsets:
+            common_coefficient = None
+            for j in range(0, div, p):
+                i = j + offset
+                # skip 0 so coeffcient for zeta**0 can be negative.
+                if i == 0:
+                    continue
+                index = div - i - 1
+                if common_coefficient is None:
+                    common_coefficient = new_coeffs[index]
+                elif common_coefficient > new_coeffs[index]:
+                    common_coefficient = new_coeffs[index]
+            if common_coefficient is not None and common_coefficient > 0:
+                    for j in range(0, div, p):
+                        i = j + offset
+                        index = div - i - 1
+                        new_coeffs[index] -= common_coefficient
 
     new_poly = sp.Poly(new_coeffs, sym)
 
