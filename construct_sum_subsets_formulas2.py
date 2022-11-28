@@ -158,7 +158,7 @@ class SumSubsetFormulaResult:
 
 
     def __str__(self):
-        str = self.key_symbols.__str__() + "\nFormulars:\n"
+        str = self.key_symbols.__str__() + "\nFormulas:\n"
         sorted_dict = {}
         for key, value in self.lookup_v_s.items():
             for entry in key:
@@ -239,7 +239,7 @@ def test_expressions():
 def test_formulas():
     c9_n = []
 
-    #Formulars:
+    #Formulas:
     # c0(n) = ( 6 * 2**(n//9) + 2 * (2**3)**(n//9) + 1 * (2**9)**(n//9) ) // 9
     # c1(n) = ( -1 * (2**3)**(n//9) + 1 * (2**9)**(n//9) ) // 9
     # c3(n) = ( -3 * 2**(n//9) + 2 * (2**3)**(n//9) + 1 * (2**9)**(n//9) ) // 9

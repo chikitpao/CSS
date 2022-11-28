@@ -1,4 +1,4 @@
-# Construct formulars for counting sum of subsets modulo div via cyclic sieving 
+# Construct formulas for counting sum of subsets modulo div via cyclic sieving 
 # Problem related to youtube video "Olympiad level counting - How many subsets of {1,…,2000} have a sum divisible by 5"
 #  by 3Blue1Brown (url: https://www.youtube.com/watch?v=bOXCLR3Wric)
 

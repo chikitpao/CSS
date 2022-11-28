@@ -1,82 +1,82 @@
 ##### d: 2
 {c0: KeySymbol(members=[c0, c1], index=0)}
-Formulars:
+Formulas:
 c0(n) = ( 1 * (2**2)**(n//2) ) // 2
 
 ##### d: 3
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 2 * 2**(n//3) + 1 * (2**3)**(n//3) ) // 3
 c1(n) = ( -1 * 2**(n//3) + 1 * (2**3)**(n//3) ) // 3
 
 ##### d: 4
 {c0: KeySymbol(members=[c0, c1, c2, c3], index=0)}
-Formulars:
+Formulas:
 c0(n) = ( 1 * (2**4)**(n//4) ) // 4
 
 ##### d: 5
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 4 * 2**(n//5) + 1 * (2**5)**(n//5) ) // 5
 c1(n) = ( -1 * 2**(n//5) + 1 * (2**5)**(n//5) ) // 5
 
 ##### d: 6
 {c0: KeySymbol(members=[c0, c3], index=0), c1: KeySymbol(members=[c1, c2, c4, c5], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 2 * (2**2)**(n//6) + 1 * (2**6)**(n//6) ) // 6
 c1(n) = ( -1 * (2**2)**(n//6) + 1 * (2**6)**(n//6) ) // 6
 
 ##### d: 7
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 6 * 2**(n//7) + 1 * (2**7)**(n//7) ) // 7
 c1(n) = ( -1 * 2**(n//7) + 1 * (2**7)**(n//7) ) // 7
 
 ##### d: 8
 {c0: KeySymbol(members=[c0, c1, c2, c3, c4, c5, c6, c7], index=0)}
-Formulars:
+Formulas:
 c0(n) = ( 1 * (2**8)**(n//8) ) // 8
 
 ##### d: 9
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8], index=1), c3: KeySymbol(members=[c3, c6], index=3)}
-Formulars:
+Formulas:
 c0(n) = ( 6 * 2**(n//9) + 2 * (2**3)**(n//9) + 1 * (2**9)**(n//9) ) // 9
 c1(n) = ( -1 * (2**3)**(n//9) + 1 * (2**9)**(n//9) ) // 9
 c3(n) = ( -3 * 2**(n//9) + 2 * (2**3)**(n//9) + 1 * (2**9)**(n//9) ) // 9
 
 ##### d: 10
 {c0: KeySymbol(members=[c0, c5], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c6, c7, c8, c9], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 4 * (2**2)**(n//10) + 1 * (2**10)**(n//10) ) // 10
 c1(n) = ( -1 * (2**2)**(n//10) + 1 * (2**10)**(n//10) ) // 10
 
 ##### d: 11
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 10 * 2**(n//11) + 1 * (2**11)**(n//11) ) // 11
 c1(n) = ( -1 * 2**(n//11) + 1 * (2**11)**(n//11) ) // 11
 
 ##### d: 12
 {c0: KeySymbol(members=[c0, c3, c6, c9], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 2 * (2**4)**(n//12) + 1 * (2**12)**(n//12) ) // 12
 c1(n) = ( -1 * (2**4)**(n//12) + 1 * (2**12)**(n//12) ) // 12
 
 ##### d: 13
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 12 * 2**(n//13) + 1 * (2**13)**(n//13) ) // 13
 c1(n) = ( -1 * 2**(n//13) + 1 * (2**13)**(n//13) ) // 13
 
 ##### d: 14
 {c0: KeySymbol(members=[c0, c7], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c8, c9, c10, c11, c12, c13], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 6 * (2**2)**(n//14) + 1 * (2**14)**(n//14) ) // 14
 c1(n) = ( -1 * (2**2)**(n//14) + 1 * (2**14)**(n//14) ) // 14
 
 ##### d: 15
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c7, c8, c11, c13, c14], index=1), c3: KeySymbol(members=[c3, c6, c9, c12], index=3), c5: KeySymbol(members=[c5, c10], index=5)}
-Formulars:
+Formulas:
 c0(n) = ( 8 * 2**(n//15) + 4 * (2**3)**(n//15) + 2 * (2**5)**(n//15) + 1 * (2**15)**(n//15) ) // 15
 c1(n) = ( 1 * 2**(n//15) - 1 * (2**3)**(n//15) - 1 * (2**5)**(n//15) + 1 * (2**15)**(n//15) ) // 15
 c3(n) = ( -2 * 2**(n//15) - 1 * (2**3)**(n//15) + 2 * (2**5)**(n//15) + 1 * (2**15)**(n//15) ) // 15
@@ -84,37 +84,37 @@ c5(n) = ( -4 * 2**(n//15) + 4 * (2**3)**(n//15) - 1 * (2**5)**(n//15) + 1 * (2**
 
 ##### d: 16
 {c0: KeySymbol(members=[c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15], index=0)}
-Formulars:
+Formulas:
 c0(n) = ( 1 * (2**16)**(n//16) ) // 16
 
 ##### d: 17
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 16 * 2**(n//17) + 1 * (2**17)**(n//17) ) // 17
 c1(n) = ( -1 * 2**(n//17) + 1 * (2**17)**(n//17) ) // 17
 
 ##### d: 18
 {c0: KeySymbol(members=[c0, c9], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11, c13, c14, c16, c17], index=1), c3: KeySymbol(members=[c3, c6, c12, c15], index=3)}
-Formulars:
+Formulas:
 c0(n) = ( 6 * (2**2)**(n//18) + 2 * (2**6)**(n//18) + 1 * (2**18)**(n//18) ) // 18
 c1(n) = ( -1 * (2**6)**(n//18) + 1 * (2**18)**(n//18) ) // 18
 c3(n) = ( -3 * (2**2)**(n//18) + 2 * (2**6)**(n//18) + 1 * (2**18)**(n//18) ) // 18
 
 ##### d: 19
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 18 * 2**(n//19) + 1 * (2**19)**(n//19) ) // 19
 c1(n) = ( -1 * 2**(n//19) + 1 * (2**19)**(n//19) ) // 19
 
 ##### d: 20
 {c0: KeySymbol(members=[c0, c5, c10, c15], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c6, c7, c8, c9, c11, c12, c13, c14, c16, c17, c18, c19], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 4 * (2**4)**(n//20) + 1 * (2**20)**(n//20) ) // 20
 c1(n) = ( -1 * (2**4)**(n//20) + 1 * (2**20)**(n//20) ) // 20
 
 ##### d: 21
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c8, c10, c11, c13, c16, c17, c19, c20], index=1), c3: KeySymbol(members=[c3, c6, c9, c12, c15, c18], index=3), c7: KeySymbol(members=[c7, c14], index=7)}
-Formulars:
+Formulas:
 c0(n) = ( 12 * 2**(n//21) + 6 * (2**3)**(n//21) + 2 * (2**7)**(n//21) + 1 * (2**21)**(n//21) ) // 21
 c1(n) = ( 1 * 2**(n//21) - 1 * (2**3)**(n//21) - 1 * (2**7)**(n//21) + 1 * (2**21)**(n//21) ) // 21
 c3(n) = ( -2 * 2**(n//21) - 1 * (2**3)**(n//21) + 2 * (2**7)**(n//21) + 1 * (2**21)**(n//21) ) // 21
@@ -122,38 +122,38 @@ c7(n) = ( -6 * 2**(n//21) + 6 * (2**3)**(n//21) - 1 * (2**7)**(n//21) + 1 * (2**
 
 ##### d: 22
 {c0: KeySymbol(members=[c0, c11], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 10 * (2**2)**(n//22) + 1 * (2**22)**(n//22) ) // 22
 c1(n) = ( -1 * (2**2)**(n//22) + 1 * (2**22)**(n//22) ) // 22
 
 ##### d: 23
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 22 * 2**(n//23) + 1 * (2**23)**(n//23) ) // 23
 c1(n) = ( -1 * 2**(n//23) + 1 * (2**23)**(n//23) ) // 23
 
 ##### d: 24
 {c0: KeySymbol(members=[c0, c3, c6, c9, c12, c15, c18, c21], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11, c13, c14, c16, c17, c19, c20, c22, c23], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 2 * (2**8)**(n//24) + 1 * (2**24)**(n//24) ) // 24
 c1(n) = ( -1 * (2**8)**(n//24) + 1 * (2**24)**(n//24) ) // 24
 
 ##### d: 25
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c6, c7, c8, c9, c11, c12, c13, c14, c16, c17, c18, c19, c21, c22, c23, c24], index=1), c5: KeySymbol(members=[c5, c10, c15, c20], index=5)}
-Formulars:
+Formulas:
 c0(n) = ( 20 * 2**(n//25) + 4 * (2**5)**(n//25) + 1 * (2**25)**(n//25) ) // 25
 c1(n) = ( -1 * (2**5)**(n//25) + 1 * (2**25)**(n//25) ) // 25
 c5(n) = ( -5 * 2**(n//25) + 4 * (2**5)**(n//25) + 1 * (2**25)**(n//25) ) // 25
 
 ##### d: 26
 {c0: KeySymbol(members=[c0, c13], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 12 * (2**2)**(n//26) + 1 * (2**26)**(n//26) ) // 26
 c1(n) = ( -1 * (2**2)**(n//26) + 1 * (2**26)**(n//26) ) // 26
 
 ##### d: 27
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11, c13, c14, c16, c17, c19, c20, c22, c23, c25, c26], index=1), c3: KeySymbol(members=[c3, c6, c12, c15, c21, c24], index=3), c9: KeySymbol(members=[c9, c18], index=9)}
-Formulars:
+Formulas:
 c0(n) = ( 18 * 2**(n//27) + 6 * (2**3)**(n//27) + 2 * (2**9)**(n//27) + 1 * (2**27)**(n//27) ) // 27
 c1(n) = ( -1 * (2**9)**(n//27) + 1 * (2**27)**(n//27) ) // 27
 c3(n) = ( -3 * (2**3)**(n//27) + 2 * (2**9)**(n//27) + 1 * (2**27)**(n//27) ) // 27
@@ -161,19 +161,19 @@ c9(n) = ( -9 * 2**(n//27) + 6 * (2**3)**(n//27) + 2 * (2**9)**(n//27) + 1 * (2**
 
 ##### d: 28
 {c0: KeySymbol(members=[c0, c7, c14, c21], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c8, c9, c10, c11, c12, c13, c15, c16, c17, c18, c19, c20, c22, c23, c24, c25, c26, c27], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 6 * (2**4)**(n//28) + 1 * (2**28)**(n//28) ) // 28
 c1(n) = ( -1 * (2**4)**(n//28) + 1 * (2**28)**(n//28) ) // 28
 
 ##### d: 29
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 28 * 2**(n//29) + 1 * (2**29)**(n//29) ) // 29
 c1(n) = ( -1 * 2**(n//29) + 1 * (2**29)**(n//29) ) // 29
 
 ##### d: 30
 {c0: KeySymbol(members=[c0, c15], index=0), c1: KeySymbol(members=[c1, c2, c4, c7, c8, c11, c13, c14, c16, c17, c19, c22, c23, c26, c28, c29], index=1), c3: KeySymbol(members=[c3, c6, c9, c12, c18, c21, c24, c27], index=3), c5: KeySymbol(members=[c5, c10, c20, c25], index=5)}
-Formulars:
+Formulas:
 c0(n) = ( 8 * (2**2)**(n//30) + 4 * (2**6)**(n//30) + 2 * (2**10)**(n//30) + 1 * (2**30)**(n//30) ) // 30
 c1(n) = ( 1 * (2**2)**(n//30) - 1 * (2**6)**(n//30) - 1 * (2**10)**(n//30) + 1 * (2**30)**(n//30) ) // 30
 c3(n) = ( -2 * (2**2)**(n//30) - 1 * (2**6)**(n//30) + 2 * (2**10)**(n//30) + 1 * (2**30)**(n//30) ) // 30
@@ -181,18 +181,18 @@ c5(n) = ( -4 * (2**2)**(n//30) + 4 * (2**6)**(n//30) - 1 * (2**10)**(n//30) + 1 
 
 ##### d: 31
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 30 * 2**(n//31) + 1 * (2**31)**(n//31) ) // 31
 c1(n) = ( -1 * 2**(n//31) + 1 * (2**31)**(n//31) ) // 31
 
 ##### d: 32
 {c0: KeySymbol(members=[c0, c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31], index=0)}
-Formulars:
+Formulas:
 c0(n) = ( 1 * (2**32)**(n//32) ) // 32
 
 ##### d: 33
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c13, c14, c16, c17, c19, c20, c23, c25, c26, c28, c29, c31, c32], index=1), c3: KeySymbol(members=[c3, c6, c9, c12, c15, c18, c21, c24, c27, c30], index=3), c11: KeySymbol(members=[c11, c22], index=11)}
-Formulars:
+Formulas:
 c0(n) = ( 20 * 2**(n//33) + 10 * (2**3)**(n//33) + 2 * (2**11)**(n//33) + 1 * (2**33)**(n//33) ) // 33
 c1(n) = ( 1 * 2**(n//33) - 1 * (2**3)**(n//33) - 1 * (2**11)**(n//33) + 1 * (2**33)**(n//33) ) // 33
 c3(n) = ( -2 * 2**(n//33) - 1 * (2**3)**(n//33) + 2 * (2**11)**(n//33) + 1 * (2**33)**(n//33) ) // 33
@@ -200,13 +200,13 @@ c11(n) = ( -10 * 2**(n//33) + 10 * (2**3)**(n//33) - 1 * (2**11)**(n//33) + 1 * 
 
 ##### d: 34
 {c0: KeySymbol(members=[c0, c17], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 16 * (2**2)**(n//34) + 1 * (2**34)**(n//34) ) // 34
 c1(n) = ( -1 * (2**2)**(n//34) + 1 * (2**34)**(n//34) ) // 34
 
 ##### d: 35
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c6, c8, c9, c11, c12, c13, c16, c17, c18, c19, c22, c23, c24, c26, c27, c29, c31, c32, c33, c34], index=1), c5: KeySymbol(members=[c5, c10, c15, c20, c25, c30], index=5), c7: KeySymbol(members=[c7, c14, c21, c28], index=7)}
-Formulars:
+Formulas:
 c0(n) = ( 24 * 2**(n//35) + 6 * (2**5)**(n//35) + 4 * (2**7)**(n//35) + 1 * (2**35)**(n//35) ) // 35
 c1(n) = ( 1 * 2**(n//35) - 1 * (2**5)**(n//35) - 1 * (2**7)**(n//35) + 1 * (2**35)**(n//35) ) // 35
 c5(n) = ( -4 * 2**(n//35) - 1 * (2**5)**(n//35) + 4 * (2**7)**(n//35) + 1 * (2**35)**(n//35) ) // 35
@@ -214,26 +214,26 @@ c7(n) = ( -6 * 2**(n//35) + 6 * (2**5)**(n//35) - 1 * (2**7)**(n//35) + 1 * (2**
 
 ##### d: 36
 {c0: KeySymbol(members=[c0, c9, c18, c27], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11, c13, c14, c16, c17, c19, c20, c22, c23, c25, c26, c28, c29, c31, c32, c34, c35], index=1), c3: KeySymbol(members=[c3, c6, c12, c15, c21, c24, c30, c33], index=3)}
-Formulars:
+Formulas:
 c0(n) = ( 6 * (2**4)**(n//36) + 2 * (2**12)**(n//36) + 1 * (2**36)**(n//36) ) // 36
 c1(n) = ( -1 * (2**12)**(n//36) + 1 * (2**36)**(n//36) ) // 36
 c3(n) = ( -3 * (2**4)**(n//36) + 2 * (2**12)**(n//36) + 1 * (2**36)**(n//36) ) // 36
 
 ##### d: 37
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 36 * 2**(n//37) + 1 * (2**37)**(n//37) ) // 37
 c1(n) = ( -1 * 2**(n//37) + 1 * (2**37)**(n//37) ) // 37
 
 ##### d: 38
 {c0: KeySymbol(members=[c0, c19], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 18 * (2**2)**(n//38) + 1 * (2**38)**(n//38) ) // 38
 c1(n) = ( -1 * (2**2)**(n//38) + 1 * (2**38)**(n//38) ) // 38
 
 ##### d: 39
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11, c14, c16, c17, c19, c20, c22, c23, c25, c28, c29, c31, c32, c34, c35, c37, c38], index=1), c3: KeySymbol(members=[c3, c6, c9, c12, c15, c18, c21, c24, c27, c30, c33, c36], index=3), c13: KeySymbol(members=[c13, c26], index=13)}
-Formulars:
+Formulas:
 c0(n) = ( 24 * 2**(n//39) + 12 * (2**3)**(n//39) + 2 * (2**13)**(n//39) + 1 * (2**39)**(n//39) ) // 39
 c1(n) = ( 1 * 2**(n//39) - 1 * (2**3)**(n//39) - 1 * (2**13)**(n//39) + 1 * (2**39)**(n//39) ) // 39
 c3(n) = ( -2 * 2**(n//39) - 1 * (2**3)**(n//39) + 2 * (2**13)**(n//39) + 1 * (2**39)**(n//39) ) // 39
@@ -241,19 +241,19 @@ c13(n) = ( -12 * 2**(n//39) + 12 * (2**3)**(n//39) - 1 * (2**13)**(n//39) + 1 * 
 
 ##### d: 40
 {c0: KeySymbol(members=[c0, c5, c10, c15, c20, c25, c30, c35], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c6, c7, c8, c9, c11, c12, c13, c14, c16, c17, c18, c19, c21, c22, c23, c24, c26, c27, c28, c29, c31, c32, c33, c34, c36, c37, c38, c39], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 4 * (2**8)**(n//40) + 1 * (2**40)**(n//40) ) // 40
 c1(n) = ( -1 * (2**8)**(n//40) + 1 * (2**40)**(n//40) ) // 40
 
 ##### d: 41
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 40 * 2**(n//41) + 1 * (2**41)**(n//41) ) // 41
 c1(n) = ( -1 * 2**(n//41) + 1 * (2**41)**(n//41) ) // 41
 
 ##### d: 42
 {c0: KeySymbol(members=[c0, c21], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c8, c10, c11, c13, c16, c17, c19, c20, c22, c23, c25, c26, c29, c31, c32, c34, c37, c38, c40, c41], index=1), c3: KeySymbol(members=[c3, c6, c9, c12, c15, c18, c24, c27, c30, c33, c36, c39], index=3), c7: KeySymbol(members=[c7, c14, c28, c35], index=7)}
-Formulars:
+Formulas:
 c0(n) = ( 12 * (2**2)**(n//42) + 6 * (2**6)**(n//42) + 2 * (2**14)**(n//42) + 1 * (2**42)**(n//42) ) // 42
 c1(n) = ( 1 * (2**2)**(n//42) - 1 * (2**6)**(n//42) - 1 * (2**14)**(n//42) + 1 * (2**42)**(n//42) ) // 42
 c3(n) = ( -2 * (2**2)**(n//42) - 1 * (2**6)**(n//42) + 2 * (2**14)**(n//42) + 1 * (2**42)**(n//42) ) // 42
@@ -261,19 +261,19 @@ c7(n) = ( -6 * (2**2)**(n//42) + 6 * (2**6)**(n//42) - 1 * (2**14)**(n//42) + 1 
 
 ##### d: 43
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40, c41, c42], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 42 * 2**(n//43) + 1 * (2**43)**(n//43) ) // 43
 c1(n) = ( -1 * 2**(n//43) + 1 * (2**43)**(n//43) ) // 43
 
 ##### d: 44
 {c0: KeySymbol(members=[c0, c11, c22, c33], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c34, c35, c36, c37, c38, c39, c40, c41, c42, c43], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 10 * (2**4)**(n//44) + 1 * (2**44)**(n//44) ) // 44
 c1(n) = ( -1 * (2**4)**(n//44) + 1 * (2**44)**(n//44) ) // 44
 
 ##### d: 45
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c4, c7, c8, c11, c13, c14, c16, c17, c19, c22, c23, c26, c28, c29, c31, c32, c34, c37, c38, c41, c43, c44], index=1), c3: KeySymbol(members=[c3, c6, c12, c21, c24, c33, c39, c42], index=3), c5: KeySymbol(members=[c5, c10, c20, c25, c35, c40], index=5), c9: KeySymbol(members=[c9, c18, c27, c36], index=9), c15: KeySymbol(members=[c15, c30], index=15)}
-Formulars:
+Formulas:
 c0(n) = ( 24 * 2**(n//45) + 8 * (2**3)**(n//45) + 6 * (2**5)**(n//45) + 4 * (2**9)**(n//45) + 2 * (2**15)**(n//45) + 1 * (2**45)**(n//45) ) // 45
 c1(n) = ( 1 * (2**3)**(n//45) - 1 * (2**9)**(n//45) - 1 * (2**15)**(n//45) + 1 * (2**45)**(n//45) ) // 45
 c3(n) = ( 3 * 2**(n//45) - 2 * (2**3)**(n//45) - 3 * (2**5)**(n//45) - 1 * (2**9)**(n//45) + 2 * (2**15)**(n//45) + 1 * (2**45)**(n//45) ) // 45
@@ -283,32 +283,32 @@ c15(n) = ( -12 * 2**(n//45) + 8 * (2**3)**(n//45) - 3 * (2**5)**(n//45) + 4 * (2
 
 ##### d: 46
 {c0: KeySymbol(members=[c0, c23], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40, c41, c42, c43, c44, c45], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 22 * (2**2)**(n//46) + 1 * (2**46)**(n//46) ) // 46
 c1(n) = ( -1 * (2**2)**(n//46) + 1 * (2**46)**(n//46) ) // 46
 
 ##### d: 47
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c7, c8, c9, c10, c11, c12, c13, c14, c15, c16, c17, c18, c19, c20, c21, c22, c23, c24, c25, c26, c27, c28, c29, c30, c31, c32, c33, c34, c35, c36, c37, c38, c39, c40, c41, c42, c43, c44, c45, c46], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 46 * 2**(n//47) + 1 * (2**47)**(n//47) ) // 47
 c1(n) = ( -1 * 2**(n//47) + 1 * (2**47)**(n//47) ) // 47
 
 ##### d: 48
 {c0: KeySymbol(members=[c0, c3, c6, c9, c12, c15, c18, c21, c24, c27, c30, c33, c36, c39, c42, c45], index=0), c1: KeySymbol(members=[c1, c2, c4, c5, c7, c8, c10, c11, c13, c14, c16, c17, c19, c20, c22, c23, c25, c26, c28, c29, c31, c32, c34, c35, c37, c38, c40, c41, c43, c44, c46, c47], index=1)}
-Formulars:
+Formulas:
 c0(n) = ( 2 * (2**16)**(n//48) + 1 * (2**48)**(n//48) ) // 48
 c1(n) = ( -1 * (2**16)**(n//48) + 1 * (2**48)**(n//48) ) // 48
 
 ##### d: 49
 {c0: KeySymbol(members=[c0], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c5, c6, c8, c9, c10, c11, c12, c13, c15, c16, c17, c18, c19, c20, c22, c23, c24, c25, c26, c27, c29, c30, c31, c32, c33, c34, c36, c37, c38, c39, c40, c41, c43, c44, c45, c46, c47, c48], index=1), c7: KeySymbol(members=[c7, c14, c21, c28, c35, c42], index=7)}
-Formulars:
+Formulas:
 c0(n) = ( 42 * 2**(n//49) + 6 * (2**7)**(n//49) + 1 * (2**49)**(n//49) ) // 49
 c1(n) = ( -1 * (2**7)**(n//49) + 1 * (2**49)**(n//49) ) // 49
 c7(n) = ( -7 * 2**(n//49) + 6 * (2**7)**(n//49) + 1 * (2**49)**(n//49) ) // 49
 
 ##### d: 50
 {c0: KeySymbol(members=[c0, c25], index=0), c1: KeySymbol(members=[c1, c2, c3, c4, c6, c7, c8, c9, c11, c12, c13, c14, c16, c17, c18, c19, c21, c22, c23, c24, c26, c27, c28, c29, c31, c32, c33, c34, c36, c37, c38, c39, c41, c42, c43, c44, c46, c47, c48, c49], index=1), c5: KeySymbol(members=[c5, c10, c15, c20, c30, c35, c40, c45], index=5)}
-Formulars:
+Formulas:
 c0(n) = ( 20 * (2**2)**(n//50) + 4 * (2**10)**(n//50) + 1 * (2**50)**(n//50) ) // 50
 c1(n) = ( -1 * (2**10)**(n//50) + 1 * (2**50)**(n//50) ) // 50
 c5(n) = ( -5 * (2**2)**(n//50) + 4 * (2**10)**(n//50) + 1 * (2**50)**(n//50) ) // 50
