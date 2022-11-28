@@ -31,100 +31,33 @@ class SumSubsetFormulaResult:
                 if(v[j,0] > 0):
                     self.list_dict[i][v[j,0]] = 0
 
-    def shrink_poly_cheat(self, expr, sym, div, list_index, key):
-        all_coeffs = sp.poly(expr, sym).all_coeffs()
-        set_length = None
-        significant_indices_correct = None
-        possible_values = None
-        value_to_check = None
-        if div == 15:
-            # "zeta**14 + zeta**13 + zeta**11 + zeta**8 + zeta**7 + zeta**4 + zeta**2 + zeta" => 1
-            set_length = 15
-            significant_indices_correct = [1, 2, 4, 7, 8, 11, 13, 14]
-            possible_values = [1]
-        elif div == 21:
-            # "zeta**20 + zeta**19 + zeta**17 + zeta**16 + zeta**13 + zeta**11 + zeta**10 + zeta**8 + zeta**5 + zeta**4 + zeta**2 + zeta" => 1
-            set_length = 21
-            significant_indices_correct = [1, 2, 4, 5, 8, 10, 11, 13, 16, 17, 19, 20]
-            possible_values = [1]
-        elif div == 30:
-            # "zeta**28 + zeta**26 + zeta**22 + zeta**16 + zeta**14 + zeta**8 + zeta**4 + zeta**2" => 1
-            set_length = 29
-            significant_indices_correct = [2, 4, 8, 14, 16, 22, 26, 28]
-            possible_values = [1]
-        elif div == 33:
-            # "zeta**32 + zeta**31 + zeta**29 + zeta**28 + zeta**26 + zeta**25 + zeta**23 + zeta**20 + zeta**19 + zeta**17 + zeta**16 + zeta**14 "
-            # "+ zeta**13 + zeta**10 + zeta**8 + zeta**7 + zeta**5 + zeta**4 + zeta**2 + zeta" => 1
-            set_length = 33
-            significant_indices_correct = [1, 2, 4, 5, 7, 8, 10, 13, 14, 16, 17, 19, 20, 23, 25, 26, 28, 29, 31, 32]
-            possible_values = [1]
-        elif div == 35:
-            # "zeta**34 + zeta**33 + zeta**32 + zeta**31 + zeta**29 + zeta**27 + zeta**26 + zeta**24 + zeta**23 + zeta**22 + zeta**19 + zeta**18 "
-            # "+ zeta**17 + zeta**16 + zeta**13 + zeta**12 + zeta**11 + zeta**9 + zeta**8 + zeta**6 + zeta**4 + zeta**3 + zeta**2 + zeta" => 1
-            set_length = 35
-            significant_indices_correct = [1, 2, 3, 4, 6, 8, 9, 11, 12, 13, 16, 17, 18, 19, 22, 23, 24, 26, 27, 29, 31, 32, 33, 34]
-            possible_values = [1]
-        elif div == 39:
-            # "zeta**38 + zeta**37 + zeta**35 + zeta**34 + zeta**32 + zeta**31 + zeta**29 + zeta**28 + zeta**25 + zeta**23 + zeta**22 + zeta**20 "
-            # "+ zeta**19 + zeta**17 + zeta**16 + zeta**14 + zeta**11 + zeta**10 + zeta**8 + zeta**7 + zeta**5 + zeta**4 + zeta**2 + zeta" => 1
-            set_length = 39
-            significant_indices_correct = [1, 2, 4, 5, 7, 8, 10, 11, 14, 16, 17, 19, 20, 22, 23, 25, 28, 29, 31, 32, 34, 35, 37, 38]
-            possible_values = [1]
-        elif div == 42:
-            # "zeta**40 + zeta**38 + zeta**34 + zeta**32 + zeta**26 + zeta**22 + zeta**20 + zeta**16 + zeta**10 + zeta**8 + zeta**4 + zeta**2" => 1
-            set_length = 41
-            significant_indices_correct = [2, 4, 8, 10, 16, 20, 22, 26, 32, 34, 38, 40]
-            possible_values = [1]
-        elif div == 45:
-            # "zeta**42 + zeta**39 + zeta**33 + zeta**24 + zeta**21 + zeta**12 + zeta**6 + zeta**3" => 1
-            # "3*zeta**42 + 3*zeta**39 + 3*zeta**33 + 3*zeta**24 + 3*zeta**21 + 3*zeta**12 + 3*zeta**6 + 3*zeta**3" => 3
-            set_length = 43
-            significant_indices_correct = [3, 6, 12, 21, 24, 33, 39, 42]
-            possible_values = [1, 3]
-        elif div == 75:
-            # "zeta**70 + zeta**65 + zeta**55 + zeta**40 + zeta**35 + zeta**20 + zeta**10 + zeta**5" => 1
-            # "5*zeta**70 + 5*zeta**65 + 5*zeta**55 + 5*zeta**40 + 5*zeta**35 + 5*zeta**20 + 5*zeta**10 + 5*zeta**5" => 5
-            set_length = 71
-            significant_indices_correct = [5, 10, 20, 35, 40, 55, 65, 70]    
-            possible_values = [1, 5]
-        else:
+    def shrink_poly_evalf(self, expr, sym, div, list_index, key):
+        temp_expr = expr.subs(self.zeta, self.root)
+        temp_expr = temp_expr.evalf()
+        re = sp.re(temp_expr)
+        im = sp.im(temp_expr)
+        tolerance = 1e-8
+        assert(abs(im) < tolerance)
+        re_rounded = round(re)
+        
+        if(abs(re - re_rounded) >= tolerance):
             return None
-        
-        assert (len(all_coeffs) == set_length), f"Mismatch! len(all_coeffs): {len(all_coeffs)}. Shall be {set_length}!"
-        
-        significant_indices = [(set_length - x - 1) for x in significant_indices_correct]
-        
-        if all_coeffs[significant_indices[0]] not in possible_values:
-            return None
-        
-        value_to_check = all_coeffs[significant_indices[0]]
-
-        for i, coeff in enumerate(all_coeffs):
-            if i in significant_indices:
-                if coeff != value_to_check:
-                    return None
-            else:
-                if coeff != 0:
-                    return None
-
-        #print(f"div: {div}, list_index: {list_index}, key: {key}, new value: {value_to_check}")
-        return sp.Poly([value_to_check], sym)
+        return sp.Poly([re_rounded], sym)
 
     def simplify(self, list_index):
         for key, value in self.list_dict[list_index].items():
             # Eliminate roots in polynomial myself since Sympy seems to be unable to eliminate roots in sum.
             value = shrink_poly(value, self.zeta, self.d, self.divisors, frantic=True)
-            # shrink_poly should have already eliminated all roots. Unfortunately, it doesn't. :-(
-            if(len(value.free_symbols)!=0):
-                # It might happen if roots of unity are distributed for different power of twos! E. g.:
-                # d=9, list_index=1, key=2, value=Poly(zeta**8 + zeta**7 + zeta**5 + zeta**4 + zeta**2 + zeta, zeta, domain='ZZ')
-                # {512: 1, 2: zeta**8 + zeta**7 + zeta**5 + zeta**4 + zeta**2 + zeta, 8: zeta**6 + zeta**3}
-                # In spite of frantic=True for shrink_poly, assertion occurs for d=75!
-                # d=75, list_index=1, key=32, value=Poly(zeta**70 + zeta**65 + zeta**55 + zeta**40 + zeta**35 + zeta**20 + zeta**10 + zeta**5, zeta, domain='ZZ')
-                # {37778931862957161709568: 1, 2: 0, 8: 0, 32: zeta**70 + zeta**65 + zeta**55 + zeta**40 + zeta**35 + zeta**20 + zeta**10 + zeta**5, 32768: zeta**60 + zeta**45 + zeta**30 + zeta**15, 33554432: zeta**50 + zeta**25}
-                
-                # For some values of d, we know the polynomials to be returned and assign exact values for them.
-                new_value = self.shrink_poly_cheat(value, self.zeta, self.d, list_index, key)
+            # shrink_poly should have already eliminated all roots. Unfortunately, it doesn't. Even when frantic=True :-(
+            # It might happen if roots of unity are distributed for different power of twos! E. g.:
+            # d=9, list_index=1, key=2, value=Poly(zeta**8 + zeta**7 + zeta**5 + zeta**4 + zeta**2 + zeta, zeta, domain='ZZ')
+            # {512: 1, 2: zeta**8 + zeta**7 + zeta**5 + zeta**4 + zeta**2 + zeta, 8: zeta**6 + zeta**3}
+            # In spite of frantic=True for shrink_poly, assertion occurs for d=75!
+            # d=75, list_index=1, key=32, value=Poly(zeta**70 + zeta**65 + zeta**55 + zeta**40 + zeta**35 + zeta**20 + zeta**10 + zeta**5, zeta, domain='ZZ')
+            # {37778931862957161709568: 1, 2: 0, 8: 0, 32: zeta**70 + zeta**65 + zeta**55 + zeta**40 + zeta**35 + zeta**20 + zeta**10 + zeta**5, 32768: zeta**60 + zeta**45 + zeta**30 + zeta**15, 33554432: zeta**50 + zeta**25}
+            if(len(value.free_symbols)!=0):                
+                # Evaluate polynom as floating point and and convert it back to SymPy Poly with integer coefficients.
+                new_value = self.shrink_poly_evalf(value, self.zeta, self.d, list_index, key)
                 if new_value is not None:
                     value = new_value
                 else:
@@ -155,7 +88,6 @@ class SumSubsetFormulaResult:
             else:
                 self.lookup_v_s[key] = self.sym_c[i]
                 self.key_symbols[self.sym_c[i]] = KeySymbol(self.sym_c[i], i)
-
 
     def __str__(self):
         str = self.key_symbols.__str__() + "\nFormulas:\n"
@@ -260,7 +192,7 @@ def main():
     init_printing(use_unicode=False, wrap_line=False, num_columns=300)
     
     #test_expressions()
-    for i in range(2, 51):
+    for i in range(2, 101):
         try:
             construct_sum_subsets_formula(i)
         except AssertionError as ae:
