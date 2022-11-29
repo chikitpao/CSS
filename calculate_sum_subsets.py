@@ -4,11 +4,12 @@
 from itertools import chain, combinations
 #import numpy as np
 import sympy as sp
-#from sympy import Symbol 
 from sympy import symbols
 import time
 
 from sympy.interactive.printing import init_printing
+
+from sum_subsets_formula import SumSubsetsFormulas
 
 
 ## generate combinations and count
@@ -175,75 +176,21 @@ def calcluate_sum_subsets_logarithmic(n, div):
     return M[:, 0]
 
 
-def calcluate_sum_subsets_constant(n, div): # Use formulas
+def calcluate_sum_subsets_constant(n, div, sum_subset_formulars: SumSubsetsFormulas): # Use formulas
     if n < 0 or div < 2:
         raise ValueError("n must be >= 0 and div must be >=2!")
+    if div > 100:
+        raise ValueError("div > 100 not supported!")
 
-    # REMARK CKP: We can't handle all divisors here! 
     v = sp.Matrix(div, 1, lambda row, col: 1 if row == 0 else 0)
     if n <= 0:
         return v
 
     remainder = n % div
     temp_n = n - remainder
-    
-    if div == 3:
-        if temp_n > 0:
-            c3_0 = lambda x: (2**x + 2 * 2**(x//3)) // 3
-            c3_1 = lambda x: (2**x - 2**(x//3)) // 3
-            c_0 = c3_0(temp_n)
-            c_1 = c3_1(temp_n)
-            v = sp.Matrix(div, 1, lambda row, col: c_0 if row == 0 else c_1)
-        # else v remains the same
-    elif div == 5:
-        if temp_n > 0:
-            c5_0 = lambda x: (2**x + 4 * 2**(x//5)) // 5
-            c5_1 = lambda x: (2**x - 2**(x//5)) // 5
-            c_0 = c5_0(temp_n)
-            c_1 = c5_1(temp_n)
-            v = sp.Matrix(div, 1, lambda row, col: c_0 if row == 0 else c_1)
-        # else v remains the same
-    elif div == 6:
-        if temp_n > 0:
-            c6_0 = lambda x: (2**x + 2 * 4**(x//6)) // 6
-            c6_1 = lambda x: (2**x - 4**(x//6)) // 6
-            c_0 = c6_0(temp_n)
-            c_1 = c6_1(temp_n)
-            v = sp.Matrix(div, 1, lambda row, col: c_0 if row % 3 == 0 else c_1)
-        # else v remains the same
-    elif div == 7:
-        if temp_n > 0:
-            c7_0 = lambda x: (2**x + 6 * 2**(x//5)) // 7
-            c7_1 = lambda x: (2**x - 2**(x//5)) // 7
-            c_0 = c7_0(temp_n)
-            c_1 = c7_1(temp_n)
-            v = sp.Matrix(div, 1, lambda row, col: c_0 if row == 0 else c_1)
-        # else v remains the same
-    elif div == 9:
-        if temp_n > 0:
-            c9_0 = lambda x: (2**x + 2 * 2**(x//9) + 2* 2**(x//9 - 1) * (2 * 4**(x//9) + 4)) // 9
-            c9_1 = lambda x: (2**x + 2 * 2**(x//9) - 2**(x//9 - 1) * (2 * 4**(x//9) + 4)) // 9
-            c9_3 = lambda x: (2**x - 7 * 2**(x//9) + 2 * 2**(x//9 - 1) * (2 * 4**(x//9) + 4)) // 9
-            c_0 = c9_0(temp_n)
-            c_1 = c9_1(temp_n)
-            c_3 = c9_3(temp_n)
-            for i in range(0, div):
-                if i == 0:
-                    v[i, 0] = c_0
-                elif i % 3 == 0:
-                    v[i, 0] = c_3
-                else:
-                    v[i, 0] = c_1
-        # else v remains the same
-    else:
-        if div >= 2 and power_of_two(div):
-            if temp_n > 0:
-                c2n_0 = lambda x: 2**temp_n // div
-                c_0 = c2n_0(temp_n)
-                v = sp.Matrix(div, 1, lambda row, col: c_0)
-            # else v remains the same
-        else:
-            raise ValueError(f"div={div} is not supported by calcluate_sum_subsets_constant")
+
+    if temp_n > 0:
+        v = sum_subset_formulars.calcluate_sum_subsets(temp_n, div)
 
     if remainder == 0:
         return v
@@ -253,7 +200,8 @@ def calcluate_sum_subsets_constant(n, div): # Use formulas
     v = M * r[remainder-1]
     return v
 
- # Source for "power of two": https://stackoverflow.com/questions/57025836/how-to-check-if-a-given-number-is-a-power-of-two
+
+# Source for "power of two": https://stackoverflow.com/questions/57025836/how-to-check-if-a-given-number-is-a-power-of-two
 def power_of_two(x):
     return (x & (x-1) == 0) and x > 0
 ##
@@ -306,7 +254,8 @@ def test_power_of_two():
     t += 1
     print(t, power_of_two(t))
 
-def test(n, div):
+
+def test(n, div, sum_subset_formulars):
     print(f"### n={n} div={div}")
     
     t = time.process_time()
@@ -317,29 +266,22 @@ def test(n, div):
     r_lin = calcluate_sum_subsets_linear(n, div)
     time_lin = time.process_time() - t
     
-    r = r_log - r_lin
-    print(f"result logarithm={r_lin}, elapsed={time_log} difference with linear={r}, elapsed={time_lin}")
+    print(f"result logarithm={r_log}, elapsed={time_log} equals linear={r_log.equals(r_lin)}, elapsed={time_lin}")
 
     try:
         t = time.process_time()
-        r_const = calcluate_sum_subsets_constant(n, div)
+        r_const = calcluate_sum_subsets_constant(n, div, sum_subset_formulars)
         time_con = time.process_time() - t
-        r = r_log - r_const
-        print(f"result logarithm={r_lin}, elapsed={time_log} difference with constant={r}, elapsed={time_con}")
-    except:
-        pass
+        print(f"result logarithm={r_log}, elapsed={time_log} equals constant={r_log.equals(r_const)}, elapsed={time_con}")
+    except AssertionError as ae:
+	    print(f"##### d: {div}. Assertion occured! ({ae.__str__()})")
 
 
 def main():
     init_printing(use_unicode=False, wrap_line=False, num_columns=300)
-    #test_numpy()
-    #test_sympy()
-
-    #div = 9
-    #for i in range (0, 20):
-    #    test(i, div)
     
-    test(2003, 9)
+    sum_subset_formulars = SumSubsetsFormulas()
+    test(2003, 9, sum_subset_formulars)
 
 
 if __name__ == '__main__':

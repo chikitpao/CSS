@@ -23,6 +23,7 @@ class SumSubsetFormulaResult:
         self.lookup_v_s = {} # value -> symbol
         self.key_symbols = {} # key symbol -> KeySymbol objects
         self.sym_c2 = list(self.sym_c)
+        self.formulas = {} # key symbol -> formula string
 
         self.list_dict =  [] # list of dictionary (index 0,...,d-1) with mapping "power of two" to coefficients
         for i in range (d):
@@ -31,7 +32,7 @@ class SumSubsetFormulaResult:
                 if(v[j,0] > 0):
                     self.list_dict[i][v[j,0]] = 0
 
-    def shrink_poly_evalf(self, expr, sym, div, list_index, key):
+    def __shrink_poly_evalf(self, expr, sym, div, list_index, key):
         temp_expr = expr.subs(self.zeta, self.root)
         temp_expr = temp_expr.evalf()
         re = sp.re(temp_expr)
@@ -44,7 +45,7 @@ class SumSubsetFormulaResult:
             return None
         return sp.Poly([re_rounded], sym)
 
-    def simplify(self, list_index):
+    def __simplify(self, list_index):
         for key, value in self.list_dict[list_index].items():
             # Eliminate roots in polynomial myself since Sympy seems to be unable to eliminate roots in sum.
             value = shrink_poly(value, self.zeta, self.d, self.divisors, frantic=True)
@@ -57,7 +58,7 @@ class SumSubsetFormulaResult:
             # {37778931862957161709568: 1, 2: 0, 8: 0, 32: zeta**70 + zeta**65 + zeta**55 + zeta**40 + zeta**35 + zeta**20 + zeta**10 + zeta**5, 32768: zeta**60 + zeta**45 + zeta**30 + zeta**15, 33554432: zeta**50 + zeta**25}
             if(len(value.free_symbols)!=0):                
                 # Evaluate polynom as floating point and and convert it back to SymPy Poly with integer coefficients.
-                new_value = self.shrink_poly_evalf(value, self.zeta, self.d, list_index, key)
+                new_value = self.__shrink_poly_evalf(value, self.zeta, self.d, list_index, key)
                 if new_value is not None:
                     value = new_value
                 else:
@@ -79,7 +80,7 @@ class SumSubsetFormulaResult:
         #    print(f"sum for i={i}:", sum)
 
         for i in range(self.d):
-            self.simplify(i)
+            self.__simplify(i)
         for i in range(self.d):
             key = frozenset(self.list_dict[i].items())
             if key in self.lookup_v_s:
@@ -88,9 +89,9 @@ class SumSubsetFormulaResult:
             else:
                 self.lookup_v_s[key] = self.sym_c[i]
                 self.key_symbols[self.sym_c[i]] = KeySymbol(self.sym_c[i], i)
+        self.__construct_formulas()
 
-    def __str__(self):
-        str = self.key_symbols.__str__() + "\nFormulas:\n"
+    def __construct_formulas(self):
         sorted_dict = {}
         for key, value in self.lookup_v_s.items():
             for entry in key:
@@ -113,9 +114,33 @@ class SumSubsetFormulaResult:
                 else:
                     formula_numerator += f"(2**{e})**(n//{self.d})"
             formula_string = f"( {formula_numerator} ) // {self.d}"
-            str += f"{value}(n) = {formula_string}\n"
+            self.formulas[value] = formula_string
 
+    def __str__(self):
+        str = self.key_symbols.__str__() + "\nFormulas:\n"
+        for key_symbol, formula in self.formulas.items():
+            str += f"{key_symbol}(n) = {formula}\n"
         return str
+
+    def print_code(self):
+        #indentation = 2
+        #self.formula_objects[10] = SumSubsetsFormula(10, [0, 1, 1, 1, 1, 0, 1, 1, 1, 1],
+        #    [0, lambda n: (( 4 * (2**2)**(n//10) + 1 * (2**10)**(n//10) ) // 10)],  # c0_10
+        #    [1, lambda n: (( -1 * (2**2)**(n//10) + 1 * (2**10)**(n//10) ) // 10)],  # c1_10
+        #    )
+        str = ""
+        for i, symbol in enumerate(self.sym_c2):
+            if i == 0:
+                str += f"        self.formula_objects[{self.d}] = SumSubsetsFormula({self.d},  ["
+            else:
+                str += ", "
+            str += f"{self.key_symbols[symbol].index}"
+        str +="],"
+        print(str)
+        for key_symbol, formula in self.formulas.items():
+            print(f"            [{self.key_symbols[key_symbol].index}, lambda n: ({formula})],  # {key_symbol}_{self.d}")
+        print("            )")
+       
 
 
 def construct_sum_subsets_formula(div):
@@ -143,8 +168,8 @@ def construct_sum_subsets_formula(div):
             if(v[j,0] > 0):
                 result.list_dict[i][v[j,0]] += gf_factors[j,i]
     result.simplify_all()
-
-    print(f"##### d: {d}\n{result}")
+    # result.print_code()  # output code
+    print(f"##### d: {d}\n{result}") # OR output normally
 
 def test_expressions():
     z = sp.symbols("z")

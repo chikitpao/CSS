@@ -19,13 +19,14 @@ File list
 - **construct_sum_subsets_formulas.py**: Construct formulas for different divisors (not working for several values of d).
 - **construct_sum_subsets_formulas2.py**: Construct formulas for different divisors (for d from 2 to 100).
 - **construct2.txt**: Output of script construct_sum_subsets_formulas2.py.
+- **sum_subsets_formula.py**: Contains class with formulas. Used by function **calcluate_sum_subsets_constant** in  **calculate_sum_subsets.py**.
 
 Usage
 ------------
 - calculate_sum_subsets.py
     * **calcluate_sum_subsets_linear(n, div)**: Use matrix multiplications to calculate number of sums of subsets of n numbers modulo div. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d.
     * **calcluate_sum_subsets_logarithmic(n, div)**: Like calcluate_sum_subsets_linear, but only has logarithmic complexity instead of linear. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d.
-    * **calcluate_sum_subsets_constant(n, div)**: Use formulas to calculate number of sums of subsets of n numbers modulo div. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d. Throws ValueError if d is not supported.
+    * **calcluate_sum_subsets_constant(n, div, sum_subset_formulars: SumSubsetsFormulas)**: Use formulas to calculate number of sums of subsets of n numbers modulo div. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d. Needs an object of class SumSubsetsFormulas. Throws ValueError if d is not supported (suports d from 2 to 100).
 - calcluate_sum_subsets_cs.py
     * **calcluate_sum_subsets_cs(n, div, debug=False)**: Use cyclic sieving on a generating function to calculate number of sums of subsets of n numbers modulo div. Return a dx1-matrix with count of sums congruent to (0, 1, ...) modulo d. With parameter **debug** is set to True, additional information is shown to the output which is helpful if you want to create formulas for calculation :-).
     * **calcluate_sum_subsets_gcd(n, div)**: Like calcluate_sum_subsets_cs, but is much faster by replacing the most polynomial multiplications with evaluation of behavior regarding roots of unity.
