@@ -176,7 +176,7 @@ def calcluate_sum_subsets_logarithmic(n, div):
     return M[:, 0]
 
 
-def calcluate_sum_subsets_constant(n, div, sum_subset_formulars: SumSubsetsFormulas): # Use formulas
+def calcluate_sum_subsets_constant(n, div, sum_subset_formulas: SumSubsetsFormulas): # Use formulas
     if n < 0 or div < 2:
         raise ValueError("n must be >= 0 and div must be >=2!")
     if div > 100:
@@ -190,7 +190,7 @@ def calcluate_sum_subsets_constant(n, div, sum_subset_formulars: SumSubsetsFormu
     temp_n = n - remainder
 
     if temp_n > 0:
-        v = sum_subset_formulars.calcluate_sum_subsets(temp_n, div)
+        v = sum_subset_formulas.calcluate_sum_subsets(temp_n, div)
 
     if remainder == 0:
         return v
@@ -255,7 +255,7 @@ def test_power_of_two():
     print(t, power_of_two(t))
 
 
-def test(n, div, sum_subset_formulars):
+def test(n, div, sum_subset_formulas):
     print(f"### n={n} div={div}")
     
     t = time.process_time()
@@ -270,7 +270,7 @@ def test(n, div, sum_subset_formulars):
 
     try:
         t = time.process_time()
-        r_const = calcluate_sum_subsets_constant(n, div, sum_subset_formulars)
+        r_const = calcluate_sum_subsets_constant(n, div, sum_subset_formulas)
         time_con = time.process_time() - t
         print(f"result logarithm={r_log}, elapsed={time_log} equals constant={r_log.equals(r_const)}, elapsed={time_con}")
     except AssertionError as ae:
@@ -280,8 +280,8 @@ def test(n, div, sum_subset_formulars):
 def main():
     init_printing(use_unicode=False, wrap_line=False, num_columns=300)
     
-    sum_subset_formulars = SumSubsetsFormulas()
-    test(2003, 9, sum_subset_formulars)
+    sum_subset_formulas = SumSubsetsFormulas()
+    test(2003, 9, sum_subset_formulas)
 
 
 if __name__ == '__main__':
