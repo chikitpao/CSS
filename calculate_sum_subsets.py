@@ -1,4 +1,4 @@
-# Count / calculate number of sums of subsets modulo d 
+# Count / calculate number of sums of subsets modulo d
 # Problem related to youtube video "Olympiad level counting - How many subsets of {1,…,2000} have a sum divisible by 5"
 #  by 3Blue1Brown (url: https://www.youtube.com/watch?v=bOXCLR3Wric)
 from itertools import chain, combinations
@@ -12,7 +12,7 @@ from sympy.interactive.printing import init_printing
 from sum_subsets_formula import SumSubsetsFormulas
 
 
-## generate combinations and count
+# generate combinations and count
 # Source: https://docs.python.org/3/library/itertools.html#itertools-recipes
 def powerset(iterable):
     "powerset([1,2,3]) --> () (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
@@ -30,7 +30,7 @@ def calculate_sum_mod(l, div):
 def try_result(n, div):
     myList = [i for i in range(1, n + 1)]
 
-    #print(myList)
+    # print(myList)
     myPowerSetList = list(powerset(myList))
     mod = [0] * div
     for e in myPowerSetList:
@@ -48,13 +48,13 @@ def try_result(n, div):
 #             M[(j + k) % dim][j] = v[k]
 #     return M
 
-            
+
 # def generate_solution_vectors_np(div):
 #     result = []
-    
+
 #     # Step 1: Create matrix for 0 elements (= Identity matrix)
 #     M = np.eye(div, dtype=int)
-    
+
 #     # Step 2: Create vector for different values (needs new matrix from last value)
 #     element_vector = np.zeros((div, 1), dtype=int)
 #     element_vector[0][0] = 1
@@ -65,32 +65,32 @@ def try_result(n, div):
 #         # v2 = np.multiply(M, element_vector)
 #         v2 = np.matmul(M, element_vector)
 #         result.append(v2)
-#         element_vector[r][0] -= 1        
+#         element_vector[r][0] -= 1
 #         M = create_matrix_from_solution_vector_np(v2)
 #     return result
 # ##
 
 
-## calculate with matrix (sympy)
+# calculate with matrix (sympy)
 def create_matrix_from_solution_vector_sp(v):
-    dim = v.shape[0] # 0 -> rows, 1 -> cols
+    dim = v.shape[0]  # 0 -> rows, 1 -> cols
     M = sp.zeros(dim, dim)
     for j in range(0, dim):
         for k in range(0, dim):
             M[(j + k) % dim, j] = v[k]
     return M
 
-            
+
 def generate_solution_vectors_sp(div, maxVector=None):
     result = []
-    
+
     vectorCount = div
-    if(maxVector is not None and maxVector >= 1 and maxVector <= div):
+    if (maxVector is not None and maxVector >= 1 and maxVector <= div):
         vectorCount = maxVector
-    
+
     # Step 1: Create matrix for 0 elements (= Identity matrix)
     M = sp.eye(div)
-    
+
     # Step 2: Create vector for different values (needs new matrix from last value)
     element_vector = sp.zeros(div, 1)
     element_vector[0, 0] = 1
@@ -99,7 +99,7 @@ def generate_solution_vectors_sp(div, maxVector=None):
         element_vector[r, 0] += 1
         v2 = M * element_vector
         result.append(v2)
-        element_vector[r, 0] -= 1        
+        element_vector[r, 0] -= 1
         M = create_matrix_from_solution_vector_sp(v2)
     return result
 
@@ -109,10 +109,10 @@ def calcluate_sum_subsets_linear(n, div):
         raise ValueError("n must be >= 0 and div must be >=2!")
 
     v = sp.Matrix(div, 1, lambda row, col: 1 if row == 0 else 0)
-    
+
     if n <= 0:
         return v
-    
+
     remainder = n % div
     quotient = n // div
 
@@ -141,10 +141,10 @@ def calcluate_sum_subsets_logarithmic(n, div):
         raise ValueError("n must be >= 0 and div must be >=2!")
 
     v = sp.Matrix(div, 1, lambda row, col: 1 if row == 0 else 0)
-    
+
     if n <= 0:
         return v
-    
+
     remainder = n % div
     quotient = n // div
 
@@ -176,7 +176,8 @@ def calcluate_sum_subsets_logarithmic(n, div):
     return M[:, 0]
 
 
-def calcluate_sum_subsets_constant(n, div, sum_subset_formulas: SumSubsetsFormulas): # Use formulas
+# Use formulas
+def calcluate_sum_subsets_constant(n, div, sum_subset_formulas: SumSubsetsFormulas):
     if n < 0 or div < 2:
         raise ValueError("n must be >= 0 and div must be >=2!")
     if div > 100:
@@ -207,10 +208,10 @@ def power_of_two(x):
 ##
 
 
-## test try_result
+# test try_result
 def test_try_result():
     for div in range(2, 21):
-        for i in range (1, div + 1):
+        for i in range(1, div + 1):
             print(f"i: {i}, div: {div}, try_result: {try_result(i, div)}")
 
 
@@ -228,24 +229,26 @@ def test_try_result():
 #         M = create_matrix_from_solution_vector_np(v6)
 #         v6 = np.matmul(M, r6[div-1])
 #         n = div * i
-#         print(f"6: i {i} finished: v6: {v6} v6[0][0]-v6[1][0]: {v6[0][0]-v6[1][0]} n: {n} c6_0(n): {c6_0(n)} c6_1(n): {c6_1(n)}")    
+#         print(f"6: i {i} finished: v6: {v6} v6[0][0]-v6[1][0]: {v6[0][0]-v6[1][0]} n: {n} c6_0(n): {c6_0(n)} c6_1(n): {c6_1(n)}")
 
 
-## test sympy functions
+# test sympy functions
 def test_sympy():
-    c6_0 = lambda x: (2**x + 2 * 4**(x//6)) // 6
-    c6_1 = lambda x: (2**x - 4**(x//6)) // 6
+    def c6_0(x): return (2**x + 2 * 4**(x//6)) // 6
+    def c6_1(x): return (2**x - 4**(x//6)) // 6
     div = 6
     r6 = generate_solution_vectors_sp(div)
     print(r6)
     v6 = r6[div-1]
     n = div
-    print(f"6: v6: {v6} v6[0]-v6[1]: {v6[0]-v6[1]} n: {n} c6_0(n): {c6_0(n)} c6_1(n) {c6_1(n)}")
+    print(
+        f"6: v6: {v6} v6[0]-v6[1]: {v6[0]-v6[1]} n: {n} c6_0(n): {c6_0(n)} c6_1(n) {c6_1(n)}")
     for i in range(2, 12):
         M = create_matrix_from_solution_vector_sp(v6)
         v6 = M * v6  # was r6[div-1]
         n = 2 * n
-        print(f"6: i {i} finished: v6: {v6} v6[0,0]-v6[1,0]: {v6[0,0]-v6[1,0]} n: {n} c6_0(n): {c6_0(n)} c6_1(n): {c6_1(n)}")    
+        print(
+            f"6: i {i} finished: v6: {v6} v6[0,0]-v6[1,0]: {v6[0,0]-v6[1,0]} n: {n} c6_0(n): {c6_0(n)} c6_1(n): {c6_1(n)}")
 
 
 def test_power_of_two():
@@ -257,7 +260,7 @@ def test_power_of_two():
 
 def test(n, div, sum_subset_formulas):
     print(f"### n={n} div={div}")
-    
+
     t = time.process_time()
     r_log = calcluate_sum_subsets_logarithmic(n, div)
     time_log = time.process_time() - t
@@ -265,21 +268,23 @@ def test(n, div, sum_subset_formulas):
     t = time.process_time()
     r_lin = calcluate_sum_subsets_linear(n, div)
     time_lin = time.process_time() - t
-    
-    print(f"result logarithm={r_log}, elapsed={time_log} equals linear={r_log.equals(r_lin)}, elapsed={time_lin}")
+
+    print(
+        f"result logarithm={r_log}, elapsed={time_log} equals linear={r_log.equals(r_lin)}, elapsed={time_lin}")
 
     try:
         t = time.process_time()
         r_const = calcluate_sum_subsets_constant(n, div, sum_subset_formulas)
         time_con = time.process_time() - t
-        print(f"result logarithm={r_log}, elapsed={time_log} equals constant={r_log.equals(r_const)}, elapsed={time_con}")
+        print(
+            f"result logarithm={r_log}, elapsed={time_log} equals constant={r_log.equals(r_const)}, elapsed={time_con}")
     except AssertionError as ae:
-	    print(f"##### d: {div}. Assertion occured! ({ae.__str__()})")
+        print(f"##### d: {div}. Assertion occured! ({ae.__str__()})")
 
 
 def main():
     init_printing(use_unicode=False, wrap_line=False, num_columns=300)
-    
+
     sum_subset_formulas = SumSubsetsFormulas()
     test(2003, 9, sum_subset_formulas)
 
