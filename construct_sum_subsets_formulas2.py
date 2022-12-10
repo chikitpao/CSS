@@ -230,6 +230,27 @@ def test_formulas():
         print("cssgcd: ", calcluate_sum_subsets_gcd(v, 9))
 
 
+def test_remainder_formulas():
+    d = 5
+    print(f"d = {d}")
+    list_of_roots = [sp.root(1, d, k) for k in range(d)]
+    z = sp.symbols("z")
+    list_of_products = []
+    temp_product = 1
+    for i in range(1, d+1):
+        temp_product *= (1 + z**i)
+        list_of_products.append(sp.expand(temp_product))
+    print(list_of_products)
+    factors = sp.Matrix(
+            d, d, lambda row, col: list_of_roots[1] ** (((d-row)*col) % d))
+    for k in range(0, d):
+        for i, product in enumerate(list_of_products, 1):
+            for j in range(0, d):
+                root = list_of_roots[j]
+                product_float = (product.subs(z, root) * factors[j, k]).evalf()
+                print(f"{i} terms, zeta**{j}, k={k} factor {factors[j, k].evalf()}: {product_float}")
+
+
 def main():
     init_printing(use_unicode=False, wrap_line=False, num_columns=300)
 
@@ -241,6 +262,7 @@ def main():
             print(f"##### d: {i}. Assertion occured! ({ae.__str__()})")
 
     # test_formulas()
+    # test_remainder_formulas()
 
 
 if __name__ == '__main__':
